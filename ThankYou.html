@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thank You — Lead Submitted</title>
+<meta name="description" content="Thank you for your request. We'll contact you ASAP.">
+
+<style>
+  :root {
+    --bg: #0f172a;           /* slate-900 */
+    --card: #111827;         /* gray-900 */
+    --text: #e5e7eb;         /* gray-200 */
+    --muted: #9ca3af;        /* gray-400 */
+    --accent: #34d399;       /* emerald-400 */
+    --accent-strong: #10b981;/* emerald-500 */
+    --ring: rgba(16,185,129,.35);
+    --shadow: 0 15px 35px rgba(0,0,0,.35), 0 5px 15px rgba(0,0,0,.2);
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f8fafc;          /* slate-50 */
+      --card: #ffffff;        /* white */
+      --text: #0f172a;        /* slate-900 */
+      --muted: #475569;       /* slate-600 */
+      --accent: #10b981;      /* emerald-500 */
+      --accent-strong: #059669;/* emerald-600 */
+      --ring: rgba(16,185,129,.25);
+      --shadow: 0 10px 30px rgba(2,6,23,.08), 0 1px 2px rgba(2,6,23,.06);
+    }
+  }
+
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    color: var(--text);
+    background: radial-gradient(1200px 600px at 20% -10%, rgba(16,185,129,.08), transparent 60%),
+                radial-gradient(800px 500px at 110% 10%, rgba(59,130,246,.08), transparent 60%),
+                var(--bg);
+    display: grid;
+    place-items: center;
+  }
+
+  .wrap {
+    width: min(680px, 92vw);
+    position: relative;
+  }
+
+  .card {
+    background: var(--card);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 36px 28px 28px;
+    position: relative;
+    overflow: clip;
+    border: 1px solid rgba(148,163,184,.12);
+  }
+
+  .success {
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    margin: 6px auto 16px;
+    display: grid;
+    place-items: center;
+    background: radial-gradient(80px 80px at 30% 20%, rgba(16,185,129,.25), transparent 60%),
+                linear-gradient(180deg, rgba(16,185,129,.12), rgba(16,185,129,.06));
+    border: 1px solid rgba(16,185,129,.35);
+    box-shadow: 0 0 0 8px var(--ring);
+    animation: pop 560ms cubic-bezier(.2,.8,.2,1) 120ms both;
+  }
+
+  @keyframes pop {
+    0% { transform: scale(.7); opacity: 0; }
+    60% { transform: scale(1.06); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+
+  .check {
+    width: 38px;
+    height: 38px;
+    color: var(--accent-strong);
+    transform-origin: center;
+    animation: draw 700ms ease 260ms both;
+  }
+
+  @keyframes draw {
+    0% { stroke-dasharray: 0 100; opacity: 0; transform: scale(.9); }
+    40% { opacity: 1; }
+    100% { stroke-dasharray: 100 0; opacity: 1; transform: scale(1); }
+  }
+
+  h1 {
+    margin: 8px 0 6px;
+    font-size: clamp(22px, 3.4vw, 28px);
+    letter-spacing: .2px;
+  }
+
+  p {
+    margin: 0;
+    color: var(--muted);
+    font-size: clamp(14px, 2.8vw, 16px);
+    line-height: 1.6;
+  }
+
+  .actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 22px;
+  }
+
+  .btn {
+    appearance: none;
+    border: 0;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 14px;
+    transition: transform .08s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+    box-shadow: 0 6px 16px rgba(2,6,23,.15);
+    outline-offset: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+    color: #fff;
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid rgba(148,163,184,.25);
+  }
+
+  .btn:active { transform: translateY(1px); }
+  .btn:hover { filter: brightness(1.02); }
+
+  .meta {
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* Confetti canvas */
+  canvas#confetti {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* Subtle top accent */
+  .accent-bar {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: linear-gradient(90deg, #22c55e, #06b6d4, #6366f1);
+    opacity: .8;
+  }
+</style>
+</head>
+<body>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <div class="wrap" role="main">
+    <div class="card" aria-live="polite">
+      <div class="accent-bar" aria-hidden="true"></div>
+      <div class="success" aria-hidden="true">
+        <svg class="check" viewBox="0 0 52 52" fill="none">
+          <path d="M14 27.5l7.5 7.5L38 18" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h1>Thank you! Your request is submitted.</h1>
+      <p>We have received your lead details. Our team will contact you ASAP.</p>
+
+      <div class="actions">
+        <button class="btn btn-primary" id="btnClose" type="button">Close this window</button>
+        <a class="btn btn-secondary" id="btnHome" href="#" role="button">Back to Home</a>
+      </div>
+
+      <div class="meta">If this window doesn't close, you can safely close the tab.</div>
+    </div>
+  </div>
+
+<script>
+  // Simple confetti burst (no dependencies)
+  (function() {
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let width, height, frameId;
+
+    const colors = [
+      '#34d399', '#10b981', '#06b6d4', '#0ea5e9', '#6366f1', '#f59e0b', '#ef4444'
+    ];
+
+    const TAU = Math.PI * 2;
+    const gravity = 0.15;
+    const drag = 0.005;
+    const terminal = 3.5;
+    const confetti = [];
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+
+    function rand(min, max) { return Math.random() * (max - min) + min; }
+
+    function spawnBurst(count) {
+      const cx = width / 2;
+      const cy = Math.min(height * 0.35, 320);
+      for (let i = 0; i < count; i++) {
+        confetti.push({
+          x: cx + rand(-40, 40),
+          y: cy + rand(-20, 20),
+          w: rand(6, 12),
+          h: rand(8, 16),
+          color: colors[(Math.random() * colors.length) | 0],
+          vx: rand(-6, 6),
+          vy: rand(-7, -3),
+          rot: rand(0, TAU),
+          vr: rand(-0.2, 0.2),
+          life: 0,
+          maxLife: rand(120, 220)
+        });
+      }
+    }
+
+    function update(p) {
+      p.vy = Math.min(p.vy + gravity, terminal);
+      p.vx *= (1 - drag);
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.vr;
+      p.life++;
+    }
+
+    function draw(p) {
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      ctx.restore();
+    }
+
+    function tick() {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = confetti.length - 1; i >= 0; i--) {
+        const p = confetti[i];
+        update(p);
+        draw(p);
+        if (p.life > p.maxLife || p.y - p.h > height + 20) confetti.splice(i, 1);
+      }
+      frameId = requestAnimationFrame(tick);
+    }
+
+    function go() {
+      cancelAnimationFrame(frameId);
+      resize();
+      confetti.length = 0;
+      spawnBurst(140);
+      spawnBurst(120);
+      tick();
+      setTimeout(() => { confetti.length = 0; }, 5000);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    go();
+
+    // Buttons
+    document.getElementById('btnClose').addEventListener('click', function() {
+      // Attempt to close; if not allowed by browser, fallback to navigation
+      window.close();
+      setTimeout(() => {
+        if (!document.hidden) {
+          // Fallback: navigate to previous page
+          history.length > 1 ? history.back() : window.location.href = '/';
+        }
+      }, 200);
+    });
+
+    document.getElementById('btnHome').addEventListener('click', function(e) {
+      e.preventDefault();
+      // Replace with your site homepage if known
+      window.location.href = '/';
+    });
+  })();
+</script>
+</body>
+</html>
