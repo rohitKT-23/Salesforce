@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Web to Lead</title>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<style>
+:root {
+--bg: #0f172a;
+--card: #111827;
+--text: #e5e7eb;
+--muted: #94a3b8;
+--border: rgba(148,163,184,.22);
+--accent: #22c55e;
+--accent-strong: #16a34a;
+--error: #ef4444;
+}
+@media (prefers-color-scheme: light) {
+:root { --bg:#f8fafc; --card:#ffffff; --text:#0f172a; --muted:#475569; --border: rgba(2,6,23,.12); }
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial; color: var(--text); background:
+radial-gradient(1000px 500px at 20% -10%, rgba(34,197,94,.08), transparent 60%),
+radial-gradient(900px 500px at 120% 10%, rgba(59,130,246,.08), transparent 60%), var(--bg);
+display: grid; place-items: center; }
+.wrap { width: min(860px, 94vw); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,.25), 0 6px 14px rgba(0,0,0,.2); padding: 24px; }
+.title { margin: 0 0 6px; font-size: clamp(20px, 3.6vw, 28px); }
+.subtitle { margin: 0 0 18px; color: var(--muted); font-size: 14px; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px 16px; }
+.grid .full { grid-column: 1 / -1; }
+label { display: inline-block; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+select, input[type="text"], input[type="email"], input[type="tel"] { width: 100%; box-sizing: border-box; padding: 11px 12px; border-radius: 10px; border: 1px solid var(--border); background: transparent; color: var(--text); outline: none; transition: box-shadow .2s ease, border-color .2s ease; }
+select:focus, input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(34,197,94,.18); }
+.grid > div:hover select,
+.grid > div:hover input { border-color: rgba(148,163,184,.45); }
+.hint { font-size: 12px; color: var(--muted); margin-top: 6px; }
+.row { display: flex; gap: 10px; align-items: center; }
+.actions { margin-top: 10px; }
+.btn { appearance: none; border: 0; padding: 10px 16px; border-radius: 10px; background: linear-gradient(180deg, var(--accent), var(--accent-strong)); color: #fff; cursor: pointer; box-shadow: 0 10px 20px rgba(2,6,23,.25); transition: transform .08s ease, filter .15s ease, box-shadow .2s ease; }
+.btn:active { transform: translateY(1px); }
+.btn:hover { filter: brightness(1.03); box-shadow: 0 14px 26px rgba(2,6,23,.35); }
+.top-accent { height: 4px; background: linear-gradient(90deg, #22c55e, #06b6d4, #6366f1); border-radius: 8px; opacity: .9; margin-bottom: 14px; background-size: 200% 100%; animation: shimmer 5s linear infinite; }
+.inline { display: contents; }
+
+/* Motion refinements */
+@keyframes fadeUp { 0% { opacity: 0; transform: translateY(8px) scale(.98); } 60% { opacity: 1; } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes shimmer { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+.card { animation: fadeUp 520ms cubic-bezier(.2,.7,.2,1) 40ms both; }
+.title { animation: fadeUp 560ms cubic-bezier(.2,.7,.2,1) 80ms both; }
+.subtitle { animation: fadeUp 560ms cubic-bezier(.2,.7,.2,1) 120ms both; }
+.grid { animation: fadeUp 520ms cubic-bezier(.2,.7,.2,1) 140ms both; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+* { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="card">
+<div class="top-accent"></div>
+<h1 class="title">Contact us</h1>
+<p class="subtitle">Fill your details below. </p>
+
+<form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DdL00000eQmA1" method="POST" target="leadFrame" id="leadForm">
+
+<input type=hidden name="oid" value="00DdL00000eQmA1">
+<input type=hidden name="retURL" value="http://127.0.0.1:5500/ThankYou.html">
+
+<!--  Optional debug fields (keep commented)  -->
+<!--  <input type="hidden" name="debug" value=1>  -->
+<!--  <input type="hidden" name="debugEmail" value="rohit.rt2004@gmail.com">  -->
+
+<div class="grid">
+<div>
+<label for="salutation">Salutation</label>
+<select id="salutation" name="salutation" required>
+<option value="">--None--</option><option value="Mr.">Mr.</option>
+<option value="Ms.">Ms.</option>
+<option value="Mrs.">Mrs.</option>
+<option value="Dr.">Dr.</option>
+<option value="Prof.">Prof.</option>
+<option value="Mx.">Mx.</option>
+</select>
+<div class="hint">Required</div>
+</div>
+
+<div>
+<label for="first_name">First Name</label>
+<input id="first_name" maxlength="40" name="first_name" size="20" type="text" placeholder="John" required>
+</div>
+
+<div>
+<label for="last_name">Last Name</label>
+<input id="last_name" maxlength="80" name="last_name" size="20" type="text" placeholder="Doe" required>
+</div>
+
+<div>
+<label for="phone">Phone</label>
+<input id="phone" maxlength="40" name="phone" size="20" type="text" placeholder="+971 55 123 4567" required>
+<div class="hint" id="phoneHint">Format: digits, spaces, +, - only</div>
+</div>
+
+<div>
+<label for="email">Email</label>
+<input id="email" maxlength="80" name="email" size="20" type="text" placeholder="you@example.com" required>
+<div class="hint" id="emailHint">We’ll only use this to contact you.</div>
+</div>
+
+<div>
+<label for="company">Company</label>
+<input id="company" maxlength="40" name="company" size="20" type="text" placeholder="Your company name" required>
+</div>
+
+<div>
+<label for="city">City</label>
+<input id="city" maxlength="40" name="city" size="20" type="text" placeholder="Dubai" required>
+</div>
+
+<div>
+<label for="state">State/Province</label>
+<input id="state" maxlength="20" name="state" size="20" type="text" placeholder="Dubai" required>
+</div>
+
+<div class="full actions">
+<input class="btn" type="submit" name="submit" value="Submit Request">
+</div>
+</div>
+
+</form>
+</div>
+</div>
+
+<!-- Hidden iframe target to avoid page navigation on submit -->
+<iframe name="leadFrame" id="leadFrame" style="display:none;width:0;height:0;border:0"></iframe>
+
+<!-- Thank You Modal (popup) -->
+<div id="thankModal" style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,.55);backdrop-filter: blur(6px);z-index:50;">
+<canvas id="confetti" aria-hidden="true" style="position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"></canvas>
+<div class="card" role="dialog" aria-modal="true" aria-labelledby="tyTitle" style="max-width:640px;width:92vw;position:relative;">
+<div class="top-accent"></div>
+<div style="width:78px;height:78px;border-radius:50%;margin:6px auto 16px;display:grid;place-items:center;background: radial-gradient(80px 80px at 30% 20%, rgba(16,185,129,.25), transparent 60%), linear-gradient(180deg, rgba(16,185,129,.12), rgba(16,185,129,.06));border:1px solid rgba(16,185,129,.35);box-shadow:0 0 0 8px rgba(16,185,129,.25)">
+<svg viewBox="0 0 52 52" fill="none" style="width:38px;height:38px;color:#16a34a">
+<path d="M14 27.5l7.5 7.5L38 18" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</div>
+<h2 id="tyTitle" class="title" style="text-align:center">Thank you! Your request is submitted.</h2>
+<p class="subtitle" style="text-align:center">We have received your lead details. Our team will contact you ASAP.</p>
+<div style="display:flex;gap:10px;justify-content:center;margin-top:18px">
+<button id="closeTy" class="btn" type="button">Close</button>
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+var phone = document.getElementById('phone');
+var phoneHint = document.getElementById('phoneHint');
+var email = document.getElementById('email');
+var emailHint = document.getElementById('emailHint');
+if (phone) {
+phone.addEventListener('input', function(){
+var v = phone.value;
+var ok = /^[0-9+\-()\s]*$/.test(v);
+phone.style.borderColor = ok ? '' : 'var(--error)';
+phoneHint.style.color = ok ? 'var(--muted)' : 'var(--error)';
+});
+}
+if (email) {
+email.addEventListener('input', function(){
+var v = email.value;
+var ok = !v || /.+@.+\..+/.test(v);
+email.style.borderColor = ok ? '' : 'var(--error)';
+emailHint.textContent = ok ? 'We’ll only use this to contact you.' : 'Please check your email format.';
+emailHint.style.color = ok ? 'var(--muted)' : 'var(--error)';
+});
+}
+// Show Thank You modal on submit and keep posting to Salesforce via hidden iframe
+var form = document.getElementById('leadForm');
+var modal = document.getElementById('thankModal');
+var closeTy = document.getElementById('closeTy');
+function showModal(){ modal.style.display = 'flex'; startConfetti(); }
+if (form) {
+form.addEventListener('submit', function(){
+// Do not prevent default — allow submit to iframe
+showModal();
+});
+}
+if (closeTy) { closeTy.addEventListener('click', function(){ modal.style.display='none'; }); }
+
+// Lightweight confetti adapted from Thank You page (no deps)
+var confettiCanvas = document.getElementById('confetti');
+var ctx = confettiCanvas ? confettiCanvas.getContext('2d') : null;
+var width, height, frameId;
+var particles = [];
+var colors = ['#34d399','#10b981','#06b6d4','#0ea5e9','#6366f1','#f59e0b','#ef4444'];
+function resize(){ if(!confettiCanvas) return; width = confettiCanvas.width = window.innerWidth; height = confettiCanvas.height = window.innerHeight; }
+function rand(min,max){ return Math.random()*(max-min)+min; }
+function spawn(n){ if(!confettiCanvas) return; var cx=width/2, cy=Math.min(height*0.35,320); for(var i=0;i<n;i++){ particles.push({x:cx+rand(-40,40),y:cy+rand(-20,20),w:rand(6,12),h:rand(8,16),c:colors[(Math.random()*colors.length)|0],vx:rand(-6,6),vy:rand(-7,-3),r:rand(0,Math.PI*2),vr:rand(-0.2,0.2),life:0,max:rand(120,220)}); } }
+function update(p){ p.vy=Math.min(p.vy+0.15,3.5); p.vx*=0.995; p.x+=p.vx; p.y+=p.vy; p.r+=p.vr; p.life++; }
+function draw(p){ ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.r); ctx.fillStyle=p.c; ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore(); }
+function tick(){ if(!ctx) return; ctx.clearRect(0,0,width,height); for(var i=particles.length-1;i>=0;i--){ var p=particles[i]; update(p); draw(p); if(p.life>p.max || p.y-p.h>height+20) particles.splice(i,1); } frameId=requestAnimationFrame(tick); }
+function startConfetti(){ if(!confettiCanvas) return; cancelAnimationFrame(frameId); resize(); particles.length=0; spawn(140); spawn(120); tick(); setTimeout(function(){ particles.length=0; }, 5000); }
+window.addEventListener('resize', resize);
+})();
+</script>
+</body>
+</html>
