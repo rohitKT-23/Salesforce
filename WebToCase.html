@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Web To Case</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+            animation: fadeInDown 0.6s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .form-header p {
+            color: #666;
+            font-size: 14px;
+            animation: fadeInDown 0.6s ease-out 0.4s both;
+        }
+
+        form {
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+            margin-left: 5px;
+            cursor: help;
+        }
+
+        .tooltip-icon {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 18px;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .tooltip-container:hover .tooltip-icon {
+            transform: scale(1.2);
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 8px 12px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            font-weight: normal;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 6px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+
+        .tooltip-container:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: #f9f9f9;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        input[type="text"]:hover,
+        input[type="email"]:hover,
+        input[type="tel"]:hover,
+        textarea:hover {
+            border-color: #bbb;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        input[type="text"]:valid,
+        input[type="email"]:valid,
+        input[type="tel"]:valid,
+        textarea:valid {
+            border-left: 4px solid #4caf50;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .submit-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .submit-button:active {
+            transform: translateY(0);
+        }
+
+        .submit-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        input[type="hidden"] {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 25px;
+            }
+
+            .form-header h1 {
+                font-size: 24px;
+            }
+        }
+
+        /* Success animation */
+        .form-submitted {
+            animation: successPulse 0.5s ease-out;
+        }
+
+        @keyframes successPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        /* Field animation */
+        .form-group:nth-child(1) { animation: slideInLeft 0.6s ease-out 0.1s both; }
+        .form-group:nth-child(2) { animation: slideInLeft 0.6s ease-out 0.2s both; }
+        .form-group:nth-child(3) { animation: slideInLeft 0.6s ease-out 0.3s both; }
+        .form-group:nth-child(4) { animation: slideInLeft 0.6s ease-out 0.4s both; }
+        .form-group:nth-child(5) { animation: slideInLeft 0.6s ease-out 0.5s both; }
+        .form-group:nth-child(6) { animation: slideInLeft 0.6s ease-out 0.6s both; }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Navigation button styles */
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .nav-button {
+            flex: 1;
+            padding: 10px 15px;
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-button:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-button:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <h1>Web To Case</h1>
+            <p>We're here to help you</p>
+        </div>
+
+    <!--  ----------------------------------------------------------------------  -->
+    <!--  NOTE: Please add the following <FORM> element to your page.             -->
+    <!--  ----------------------------------------------------------------------  -->
+    
+        <form id="caseForm" action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8&orgId=00DdL00000eQmA1" method="POST" novalidate>
+    
+    <input type=hidden name="orgid" value="00DdL00000eQmA1">
+    <input type=hidden name="retURL" value="http://127.0.0.1:5500/WebToCase.html">
+    
+    <!--  ----------------------------------------------------------------------  -->
+    <!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
+    <!--  these lines if you wish to test in debug mode.                          -->
+    <!--  <input type="hidden" name="debug" value=1>                              -->
+    <!--  <input type="hidden" name="debugEmail"                                  -->
+    <!--  value="rohit.rt2004@gmail.com">                                         -->
+    <!--  ----------------------------------------------------------------------  -->
+    
+        <div class="form-group">
+            <label for="name">
+                Contact Name
+                <span class="tooltip-container">
+                    <span class="tooltip-icon">?</span>
+                    <span class="tooltip-text">Enter your full name (first and last)</span>
+                </span>
+            </label>
+            <input id="name" maxlength="80" name="name" type="text" placeholder="John Doe" required />
+        </div>
+        
+        <div class="form-group">
+            <label for="email">
+                Email
+                <span class="tooltip-container">
+                    <span class="tooltip-icon">?</span>
+                    <span class="tooltip-text">Enter a valid email address</span>
+                </span>
+            </label>
+            <input id="email" maxlength="80" name="email" type="email" placeholder="john.doe@example.com" required />
+        </div>
+        
+        <div class="form-group">
+            <label for="phone">
+                Phone
+                <span class="tooltip-container">
+                    <span class="tooltip-icon">?</span>
+                    <span class="tooltip-text">Enter your phone number with country code</span>
+                </span>
+            </label>
+            <input id="phone" maxlength="40" name="phone" type="tel" placeholder="+1 234 567 8900" required />
+        </div>
+        
+        <div class="form-group">
+            <label for="subject">
+                Subject
+                <span class="tooltip-container">
+                    <span class="tooltip-icon">?</span>
+                    <span class="tooltip-text">Brief description of your inquiry</span>
+                </span>
+            </label>
+            <input id="subject" maxlength="80" name="subject" type="text" placeholder="How can we help you?" required />
+        </div>
+        
+        <div class="form-group">
+            <label for="description">
+                Description
+                <span class="tooltip-container">
+                    <span class="tooltip-icon">?</span>
+                    <span class="tooltip-text">Provide detailed information about your request</span>
+                </span>
+            </label>
+            <textarea id="description" name="description" maxlength="32000" placeholder="Please provide more details..." required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <button type="submit" class="submit-button" name="submit">
+                <span>Submit Request</span>
+            </button>
+        </div>
+        
+        </form>
+        
+        <div class="nav-buttons">
+            <a href="WebToLead.html" class="nav-button">Go to Web To Lead</a>
+        </div>
+    </div>
+
+    <script>
+        // Form submission animation
+        const form = document.getElementById('caseForm');
+        const submitButton = form.querySelector('.submit-button');
+        
+        form.addEventListener('submit', function(e) {
+            const formContainer = document.querySelector('.form-container');
+            formContainer.classList.add('form-submitted');
+            
+            // Add loading state
+            submitButton.innerHTML = '<span>Sending...</span>';
+            submitButton.disabled = true;
+            
+            // Reset animation after it completes
+            setTimeout(() => {
+                formContainer.classList.remove('form-submitted');
+            }, 500);
+        });
+
+        // Add ripple effect to inputs on focus
+        const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], textarea');
+        
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 10);
+            });
+
+            // Add character counter for textarea
+            if (input.tagName === 'TEXTAREA') {
+                const maxLength = input.getAttribute('maxlength');
+                if (maxLength) {
+                    const counter = document.createElement('div');
+                    counter.style.cssText = 'text-align: right; color: #999; font-size: 12px; margin-top: 5px;';
+                    input.parentNode.appendChild(counter);
+                    
+                    input.addEventListener('input', function() {
+                        counter.textContent = `${this.value.length} / ${maxLength}`;
+                        if (this.value.length > maxLength * 0.9) {
+                            counter.style.color = '#f44336';
+                        } else {
+                            counter.style.color = '#999';
+                        }
+                    });
+                }
+            }
+        });
+
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add focus transitions for better UX
+        const formGroups = document.querySelectorAll('.form-group');
+        
+        formGroups.forEach(group => {
+            const input = group.querySelector('input, textarea');
+            if (input) {
+                input.addEventListener('focus', function() {
+                    group.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        group.style.transform = '';
+                    }, 200);
+                });
+            }
+        });
+
+        // Console log for debugging (can be removed in production)
+        console.log('WebToCase form initialized');
+    </script>
+</body>
+</html>
+    
