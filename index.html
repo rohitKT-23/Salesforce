@@ -56,13 +56,19 @@ select:focus, input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px r
 @media (prefers-reduced-motion: reduce) {
 * { animation: none !important; transition: none !important; }
 }
+
+/* Navigation buttons */
+.nav-buttons { display: flex; gap: 10px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); }
+.nav-button { flex: 1; padding: 10px 16px; border-radius: 10px; background: transparent; border: 1px solid var(--accent); color: var(--accent); cursor: pointer; transition: transform .08s ease, background .2s ease, color .2s ease; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; }
+.nav-button:hover { background: var(--accent); color: #fff; transform: translateY(-1px); }
+.nav-button:active { transform: translateY(0); }
 </style>
 </head>
 <body>
 <div class="wrap">
 <div class="card">
 <div class="top-accent"></div>
-<h1 class="title">Contact us</h1>
+<h1 class="title">Web To Lead</h1>
 <p class="subtitle">Fill your details below. </p>
 
 <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DdL00000eQmA1" method="POST" target="leadFrame" id="leadForm">
@@ -131,6 +137,11 @@ select:focus, input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px r
 </div>
 
 </form>
+
+<div class="nav-buttons">
+<a href="WebToCase.html" class="nav-button">Go to Web To Case</a>
+</div>
+
 </div>
 </div>
 
